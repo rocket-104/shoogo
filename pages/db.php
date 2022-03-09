@@ -7,6 +7,7 @@ class Database
 	private $pass = "";
 	protected $db;
 	public $isConn;
+	public $image;
 	
 	public function __construct()
 	{
@@ -55,6 +56,24 @@ class Database
 		} catch (PDOException $e) {
 			throw new Exception($e->getMessage());
 		}
+	}
+	
+	public function uploadPhoto()
+	{
+		$result_message="";
+
+		if ($this->image) {
+
+			$target_directory = "images/";
+			$target_file = $target_directory . $this->image;
+			$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+	  
+			// сообщение об ошибке пусто 
+			$file_upload_error_messages = "";
+			echo 555;
+		}
+
+    return $result_message;
 	}
 }
 

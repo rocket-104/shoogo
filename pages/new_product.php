@@ -14,7 +14,7 @@
 				<a href="../index.php" class="card-link">Все товары</a>
 			</div>
 			<h3 class="text-center">Добавление нового товара</h3>
-			<form class="row justify-content-center" method="POST">
+			<form class="row justify-content-center" method="POST" enctype="multipart/form-data">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-name">Название</span>
@@ -34,10 +34,7 @@
 					<input type="text" class="form-control" id="basic-art1" aria-describedby="basic-art" name="articul">
 				</div>
 				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-url">Ссылка</span>
-					</div>
-					<input type="text" class="form-control" id="basic-url1" aria-describedby="basic-url" name="url">
+					<input type="file" class="form-control" aria-describedby="basic-url" name="image">
 				</div>
 				<button type="submit" class="col-3 btn-success" name="btnAdd">Add</button>
 			</form>
@@ -46,8 +43,12 @@
 	
 </html>
 <?
-if (isset($_POST['btnAdd'])) {
-	$newProduct = $db->newProduct('INSERT INTO product (url, name, articul, price) VALUE (?, ?, ?, ?)', [$_POST['url'], $_POST['name'],$_POST['articul'],$_POST['price']]);
+if (isset($_POST['btnAdd']) && isset($_FILES['image'])) {
+	$image = !empty($_FILES['image']['name']) ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES['image']['name']) : "";
+	//$product->image = $image;
+	echo $newProduct=$db->uploadPhoto();
+	//var_dump($image);
+	//$newProduct = $db->newProduct('INSERT INTO product (url, name, articul, price) VALUE (?, ?, ?, ?)', [$image, $_POST['name'],$_POST['articul'],$_POST['price']]);
 }
 
 
