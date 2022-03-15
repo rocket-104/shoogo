@@ -43,12 +43,12 @@
 	
 </html>
 <?
-if (isset($_POST['btnAdd']) && isset($_FILES['image'])) {
-	$image = !empty($_FILES['image']['name']) ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES['image']['name']) : "";
-	//$product->image = $image;
-	echo $newProduct=$db->uploadPhoto();
-	//var_dump($image);
-	//$newProduct = $db->newProduct('INSERT INTO product (url, name, articul, price) VALUE (?, ?, ?, ?)', [$image, $_POST['name'],$_POST['articul'],$_POST['price']]);
+if (isset($_POST['btnAdd']) && $_FILES['image']['name'] !== '') {
+	
+	$size = 3; //Mb
+	
+	$image = $db->uploadPhoto($_FILES, $size);
+	$newProduct = $db->newProduct('INSERT INTO product (url, name, articul, price) VALUE (?, ?, ?, ?)', [$image, $_POST['name'],$_POST['articul'],$_POST['price']]);
 }
 
 

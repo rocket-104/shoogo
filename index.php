@@ -1,7 +1,7 @@
 <?require_once('pages/db.php');?>
 <?
 $db = new DataBase();
-$products = $db->getProducts('SELECT  DISTINCT id, name, price FROM product ORDER BY name', []);
+$products = $db->getProducts('SELECT  DISTINCT id, articul, name, price, url FROM product ORDER BY name', []);
 //die($newProduct);
 //var_dump($product);
 
@@ -26,10 +26,10 @@ $products = $db->getProducts('SELECT  DISTINCT id, name, price FROM product ORDE
 				<div class="col-3 text-center mx-4 my-3">
 					<div class="card text-center">
 						<div class="card-header">
-						арт. 001001
+						<?=$product['articul']?>
 						</div>
 						<div class="card-body">
-							<img src="images/001.jpg" class="img-fluid" alt="...">
+							<img src="images/<?=$product['url']?>" class="img-fluid" alt="...">
 							<h5 class="card-title"><?=$product['name']?></h5>
 							<p class="card-text">Стоимость: <?=$product['price']?> р.</p>
 							<a href="pages/product.php?id=<?=$product['id']?>" class="btn btn-primary">Подробнее</a>
