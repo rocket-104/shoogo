@@ -1,0 +1,15 @@
+.mycard {
+	height: 300px;
+}
+.mycard img {
+	max-height: 150px;
+	width: auto;
+}
+.imageProduct {
+	height: auto;
+	width: 50%;
+	margin: 0 auto;
+}
+.card input {
+	display: none;
+}

@@ -1,10 +1,5 @@
 <?require_once('db.php');?>
-<?
-$db = new DataBase();
-//die($newProduct);
-//var_dump($product);
-
-?>
+<?$db = new DataBase();?>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -16,15 +11,15 @@ $db = new DataBase();
 	<body>
 		<main class="container-fluid" id="main">
 			<form class="row justify-content-center" method="POST">
-				<?$product = $db->getProduct('SELECT DISTINCT name, price FROM product WHERE id = ?', [$productId]);?>
+				<?$product = $db->getProduct('SELECT DISTINCT name, price, url, articul FROM product WHERE id = ?', [$productId]);?>
 				<div class="card" style="width: 90%">
-					<img src="..." class="card-img-top" alt="...">
+					<img src="../images/<?=$product['url']?>" class="card-img-top imageProduct" alt="...">
 					<div class="card-body">
 						<h5 class="card-title"><?=$product['name']?></h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="card-text">Цена: <?=$product['price']?></p>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Артикул: <?=$product['articul']?></li>
 						<li class="list-group-item">Dapibus ac facilisis in</li>
 						<li class="list-group-item">Vestibulum at eros</li>
 					</ul>

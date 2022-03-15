@@ -1,5 +1,7 @@
 <?require_once('db.php');?>
 <?$db = new DataBase();?>
+<?require_once('photo.php');?>
+<?$photo = new Photo();?>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -47,7 +49,7 @@ if (isset($_POST['btnAdd']) && $_FILES['image']['name'] !== '') {
 	
 	$size = 3; //Mb
 	
-	$image = $db->uploadPhoto($_FILES, $size);
+	$image = $photo->uploadPhoto($_FILES, $size);
 	$newProduct = $db->newProduct('INSERT INTO product (url, name, articul, price) VALUE (?, ?, ?, ?)', [$image, $_POST['name'],$_POST['articul'],$_POST['price']]);
 }
 
